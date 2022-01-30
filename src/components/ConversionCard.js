@@ -21,7 +21,6 @@ const ConversionHeader = styled.h1`
 
 const FromContainer = styled.div`
   padding-left: 20px;
-
 `;
 const ToContainer = styled.div`
   padding-left: 20px;
@@ -43,30 +42,34 @@ export const ConversionCard = (props) => {
   return (
     <ConversionContainer>
       <ConversionHeader>Conversion</ConversionHeader>
-      <FromContainer>
-        <span>{formatMoney(23123.23)} </span>
-        <span>USD =</span>
-      </FromContainer>
-      <ToContainer>
-        <span>{formatMoney(95660909.991232)} </span>
-        <span>CAD</span>
-      </ToContainer>
-      <RateContainer>
-        <h4>Based On:</h4>
-        <RateWrapper>
-        <span>1 </span>
-        <span>USD</span>
-        <span> = </span>
-        <span>CAD</span>
-        <span> 1.28</span>
-        </RateWrapper>
-      </RateContainer>
+      {convertedAmount && conversion && rate && (
+        <React.Fragment>
+          <FromContainer>
+            <span>{formatMoney(conversion.amount)} </span>
+            <span>{conversion.from} =</span>
+          </FromContainer>
+          <ToContainer>
+            <span>{formatMoney(convertedAmount)} </span>
+            <span>{conversion.to}</span>
+          </ToContainer>
+          <RateContainer>
+            <h4>Based On:</h4>
+            <RateWrapper>
+              <span>1 </span>
+              <span>{conversion.from}</span>
+              <span> = </span>
+              <span>{conversion.to}</span>
+              <span> {rate}</span>
+            </RateWrapper>
+          </RateContainer>
+        </React.Fragment>
+      )}
     </ConversionContainer>
   );
 };
 
 const formatMoney = (val) => {
-      var amount = val.toString().split(".");
-      amount[0] = amount[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      return amount.join(".");
-}
+  var amount = val.toString().split(".");
+  amount[0] = amount[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return amount.join(".");
+};

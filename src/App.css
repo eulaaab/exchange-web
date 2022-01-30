@@ -12,5 +12,6 @@ body {
 }
 
 .label {
-  align-self: left;
+  align-self: self-start;
+  border-color: #434f5c;
 }

@@ -5,8 +5,10 @@ import '../App.css';
 
 const InputContainer = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: column;
   flex: 1 1 0;
+  padding: 5px 10px;
 `
 
 export const Input = (props) => {
